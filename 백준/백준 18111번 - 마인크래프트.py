@@ -5,43 +5,26 @@ import math
 n, m, b = map(int, sys.stdin.readline().split())
 data = []
 for _ in range(n):
-  data.append(list(map(int, sys.stdin.readline().split())))
+    data += list(map(int, sys.stdin.readline().split()))
+    
+min_h = min(data)
+max_h = max(data)
 
-time = 0
-avg = 0
-max_block = 0
-min_block = 256
-for i in range(n):
-  avg += sum(data[i])
-  
-  tmp_max = max(data[i])
-  max_block = max(tmp_max, max_block)
-
-  tmp_min = min(data[i])
-  min_block = min(tmp_min, min_block)
-avg = round(avg/(n*m))
-print(max_block, min_block, avg)
-
-check = []
-for i in range(n):
-  for j in range(m):
-    if data[i][j] > avg:
-      c = data[i][j] - avg
-      time += 2 * c
-      b += 1 * c
-    elif data[i][j] < avg:
-      c = avg - data[i][j]
-      time += 1 * c
-      b -= 1 * c
-
-if b < 0:
-  tmp_avg = avg + b
-  time = 0
-  for i in range(n):
-    for j in range(m):
-      if data[i][j] > tmp_avg:
-        time += (data[i][j] - tmp_avg) * 2
-      elif data[i][j] < tmp_avg:
-        time += (tmp_avg - data[i][j])
-  avg = tmp_avg
-print(time, avg)
+result_sec = 99999999
+result_h = 0
+for h in range(min_h, max_h+1):
+    tmp_sec = 0
+    tmp_h = b
+    for i in range((n*m)):
+        if data[i] > h:
+            tmp_sec += (data[i] - h) * 2
+            tmp_h += (data[i] - h)
+        else: #data[i] < h
+            tmp_sec += (h - data[i])
+            tmp_h -= (h - data[i])
+    if tmp_h >= 0:
+        if result_sec >= tmp_sec:
+            result_sec = tmp_sec
+            result_h = h
+            
+print(result_sec, result_h)
