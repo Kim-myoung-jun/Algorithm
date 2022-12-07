@@ -36,3 +36,24 @@ for i in range(len(num)):
       sum -= num[i]
 
 print(sum)
+
+'''
+s = input()
+arr = s.split("-")
+total = 0
+for i in range(len(arr)):
+  sum = 0;
+  if "+" in arr[i]:
+    arr_sum = list(map(int, arr[i].split("+")))
+    for j in arr_sum:
+      sum += j
+  else:
+    sum = int(arr[i])
+
+  if i==0:
+    total = sum
+  else:
+    total -= sum
+
+print(total)
+'''
