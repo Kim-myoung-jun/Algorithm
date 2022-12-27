@@ -34,3 +34,26 @@ for i in range(n):
   for j in range(n):
     print(check(i, j), end=' ')
   print()
+
+  
+'''
+import sys
+input = sys.stdin.readline
+from collections import deque
+
+n = int(input())
+data = []
+for _ in range(n):
+  data.append(list(map(int, input().split())))
+
+for k in range(n):
+  for i in range(n):
+    for j in range(n):
+      if data[i][k] == 1 and data[k][j] == 1:
+        data[i][j] = 1
+
+for i in range(n):
+  for j in range(n):
+    print(data[i][j], end=' ')
+  print()
+'''
